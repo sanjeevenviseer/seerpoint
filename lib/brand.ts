@@ -12,7 +12,7 @@ export const brand = {
   /** Full name for titles, copyright, hero (keep casing as you want it displayed) */
   fullName: "GenAISeer",
   slug: "genaiseer",
-  tagline: "AI-first software engineering",
+  tagline: "Built to ship. Measured by outcomes.",
 } as const;
 
 export type Brand = typeof brand;
