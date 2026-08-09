@@ -15,8 +15,11 @@ Open [http://localhost:3000](http://localhost:3000).
 
 1. Push this repository to GitHub (or GitLab/Bitbucket).
 2. Import the project in [Vercel Dashboard](https://vercel.com/new).
-3. Use default settings—Vercel detects Next.js automatically.
-4. Deploy.
+3. **Framework Preset:** Next.js (repo includes `vercel.json` to hint this).
+4. **Do not** set **Output Directory** to `public` — leave it **empty** so Vercel uses the Next.js build. The `public/` folder is for static assets only, not build output.
+5. Deploy.
+
+If you see *“No Output Directory named public found”*: open **Project → Settings → Build & Deployment**, set **Framework Preset** to **Next.js**, clear **Output Directory**, save, and redeploy.
 
 Or use the CLI:
 
