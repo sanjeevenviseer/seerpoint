@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-First Enterprise Transformation</title>
+    <style>
+        :root {
+            --bg-dark: #09090b;
+            --bg-card: #18181b;
+            --text-main: #f8fafc;
+            --text-muted: #a1a1aa;
+            --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            --accent-color: #38bdf8;
+            --border-color: #27272a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 0.2s, opacity 0.2s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: #fff;
+            border: none;
+            margin-right: 16px;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .card h4 {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            margin-top: 24px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Philosophy Styles */
+        .philosophy-block {
+            margin-bottom: 32px;
+        }
+        
+        .philosophy-block h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .philosophy-block h3::before {
+            content: "";
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+        }
+
+        /* Footer / Contact */
+        .footer {
+            padding: 80px 0;
+            text-align: center;
+            background-color: #050505;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 40px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-form input, .contact-form text-area {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .contact-form input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <h1>We don’t build AI prototypes.<br><span class="gradient-text">We build AI-First Enterprises.</span></h1>
+            <p>We are a specialized boutique AI and data firm. We help enterprises modernize legacy architectures, instill an AI-first culture, and solve the complex data problems that off-the-shelf software cannot touch.</p>
+            <div>
+                <a href="#contact" class="btn btn-primary">Book an AI Readiness Diagnostic</a>
+                <a href="#industries" class="btn btn-secondary">Explore Our Frameworks</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Transformation Agenda</h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">What it means to truly be AI-first.</p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="philosophy-block">
+                    <h3>The AI Culture Shift</h3>
+                    <p style="color: var(--text-muted); margin-top: 12px;">Adopting AI is not a software upgrade; it is a cultural revolution. We help leadership teams move from isolated experiments to an enterprise-wide, AI-native mindset, ensuring your people and your technology scale together.</p>
+                </div>
+                <div class="philosophy-block">
+                    <h3>Solving the Hard Problems</h3>
+                    <p style="color: var(--text-muted); margin-top: 12px;">We thrive in the deep end. From untangling massive, fractured data silos to architecting secure, agentic workflows, we specialize in the complex architectural engineering that powers true artificial intelligence.</p>
+                </div>
+                <div class="philosophy-block">
+                    <h3>Modernization at Speed</h3>
+                    <p style="color: var(--text-muted); margin-top: 12px;">We transform rigid, legacy architectures into agile, data-fluid environments ready for predictive modeling, generative AI, and autonomous agents.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Expertise Section -->
+    <section id="industries">
+        <div class="container">
+            <div class="section-header">
+                <h2>Where We Dominate</h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Domain obsession over generic solutions.</p>
+            </div>
+
+            <div class="grid-3">
+                <!-- Retail -->
+                <div class="card">
+                    <h3>Retail & E-Commerce</h3>
+                    <h4>The Enterprise Challenge</h4>
+                    <p>Fractured customer data, inventory silos, and rigid legacy commerce platforms.</p>
+                    <h4>Our AI-First Solution</h4>
+                    <p>Deploying predictive supply chain agents, unifying customer data pipelines, and leveraging decades of domain expertise to protect margins and accelerate digital conversion.</p>
+                </div>
+
+                <!-- Travel & Hospitality -->
+                <div class="card">
+                    <h3>Travel & Hospitality</h3>
+                    <h4>The Enterprise Challenge</h4>
+                    <p>Deeply siloed Property Management Systems (PMS) and Global Distribution Systems (GDS).</p>
+                    <h4>Our AI-First Solution</h4>
+                    <p>Architecting intelligent guest concierges, predictive inventory management, and bypassing legacy friction to unify operations and drive RevPAR.</p>
+                </div>
+
+                <!-- Healthcare -->
+                <div class="card">
+                    <h3>Healthcare</h3>
+                    <h4>The Enterprise Challenge</h4>
+                    <p>Unstructured EMR data, rigorous compliance requirements, and severe administrative burnout.</p>
+                    <h4>Our AI-First Solution</h4>
+                    <p>Building clinically validated AI workflows—guided by globally recognized medical authorities—to automate patient triage and securely unlock medical data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Catalog Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Blueprint</h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">How we architect your transformation.</p>
+            </div>
+
+            <div class="grid-2">
+                <div class="card" style="border-top: 4px solid #38bdf8;">
+                    <h3>AI Blueprinting & Legacy Modernization</h3>
+                    <p>Before you can deploy true AI, you must untangle the past. We start by mapping your existing data maturity and identifying structural bottlenecks within your current architecture. From there, we modernize rigid legacy codebases, break down operational silos, and engineer the high-speed, secure data pipelines required to support advanced machine learning. The result is a comprehensive technical roadmap and a data-fluid environment ready for scale—because AI is only as intelligent as the data feeding it.</p>
+                </div>
+
+                <div class="card" style="border-top: 4px solid #818cf8;">
+                    <h3>Custom Agentic AI Deployment</h3>
+                    <p>We bypass generic, off-the-shelf tools to engineer highly specialized, autonomous AI agents. These custom frameworks integrate directly into your newly modernized environment to automate your most complex, multi-step business operations, turning your data into an active, intelligent workforce.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiator Section -->
+    <section id="why-us">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Us?</h2>
+            </div>
+            <div class="grid-3">
+                <div class="card" style="background: transparent; border: none; padding: 0;">
+                    <h3 style="color: var(--accent-color);">Boutique Agility, Enterprise Execution</h3>
+                    <p>We offer the personalized focus, speed, and elite engineering of a specialized firm, capable of out-maneuvering the slow, bloated timelines of massive system integrators.</p>
+                </div>
+                <div class="card" style="background: transparent; border: none; padding: 0;">
+                    <h3 style="color: var(--accent-color);">Deep Domain DNA</h3>
+                    <p>We do not just understand code; we understand your business model. Our frameworks are built on profound, insider knowledge of retail margins, hospitality operations, and clinical healthcare realities.</p>
+                </div>
+                <div class="card" style="background: transparent; border: none; padding: 0;">
+                    <h3 style="color: var(--accent-color);">Outcomes, Not Hours</h3>
+                    <p>We do not sell developer headcounts or endless consulting cycles. We deliver fixed-timeline, high-impact architectural solutions designed to produce immediate business value.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Ready to move beyond the hype?</h2>
+            <p style="color: var(--text-muted); font-size: 1.25rem;">Let’s discuss your most complex data bottleneck.</p>
+            
+            <form class="contact-form" onsubmit="event.preventDefault();">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Corporate Email" required>
+                <input type="text" placeholder="Role / Job Title" required>
+                <input type="text" placeholder="What is your primary AI objective for this quarter?" required>
+                <button type="submit" class="btn btn-primary" style="margin: 16px 0 0 0; width: 100%;">Initiate Discussion</button>
+            </form>
+        </div>
+    </footer>
+
+</body>
+</html>
