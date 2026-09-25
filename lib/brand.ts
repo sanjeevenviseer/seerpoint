@@ -1,18 +1,19 @@
 /**
  * Single source of truth for public branding.
- *
- * Wordmark: set `wordmarkParts` and which segment gets the gradient (`wordmarkAccentIndex`).
- * Page copy, SEO, and copyright use `fullName`.
+ * Page copy follows `northlane-ai.html`.
  */
 export const brand = {
-  /** Logo text segments — rendered flush as one word (e.g. Gen + AI + Seer → GenAISeer) */
-  wordmarkParts: ["Gen", "AI", "Seer"],
-  /** Index into `wordmarkParts` for the gradient segment; use -1 for no accent */
-  wordmarkAccentIndex: 2,
-  /** Full name for titles, copyright, hero (keep casing as you want it displayed) */
-  fullName: "GenAISeer",
-  slug: "genaiseer",
-  tagline: "Built to ship. Measured by outcomes.",
+  /** Logo text segments — rendered flush as one word */
+  wordmarkParts: ["RTS", "Point"],
+  /** Index into `wordmarkParts` for an accent segment; use -1 for no accent */
+  wordmarkAccentIndex: 1,
+  /** Full name for titles, copyright, and SEO */
+  fullName: "RTSPoint AI",
+  slug: "rtspoint",
+  tagline: "Production AI, engineered and run for you.",
+  email: "hello@rtspoint.ai",
+  location: "Pune, India · working globally",
+  responseTime: "Within one business day",
 } as const;
 
 export type Brand = typeof brand;

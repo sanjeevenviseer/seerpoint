@@ -1,31 +1,32 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { SiteFooter } from "@/components/SiteFooter";
 import { brand } from "@/lib/brand";
 
-const sans = Inter({
+const sans = Geist({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-geist",
   display: "swap",
 });
 
-const display = IBM_Plex_Sans({
+const mono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-geist-mono",
   display: "swap",
-  weight: ["500", "600", "700"],
 });
+
+const title = `${brand.fullName} | Production AI, engineered and run for you`;
+const description =
+  "RTSPoint is a boutique AI engineering firm offering data engineering, AI readiness assessment, production-grade agentic AI systems, AI managed services and workflow automation with guardrails. Start with a 4-week Proof of Value.";
 
 export const metadata: Metadata = {
-  title: `${brand.fullName} | AI-First Enterprise Transformation`,
-  description:
-    "Boutique AI and software engineering firm specializing in Agentic AI, Generative AI, Machine Learning, and enterprise ADLC—building AI-first enterprises, not prototypes.",
+  title,
+  description,
   openGraph: {
-    title: `${brand.fullName} | AI-First Enterprise Transformation`,
-    description:
-      "Expert software development in Artificial Intelligence, Agentic AI, Generative AI, and Machine Learning.",
+    title,
+    description,
     type: "website",
   },
 };
@@ -36,10 +37,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${display.variable}`}>
-      <body className="min-h-screen bg-white font-sans antialiased">
+    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+      <body>
         <Navbar />
-        <main>{children}</main>
+        <main id="top">{children}</main>
         <SiteFooter />
       </body>
     </html>

@@ -9,15 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#0f172a",
-        body: "#334155",
-        subtle: "#64748b",
-        line: "#e2e8f0",
-        panel: "#f8fafc",
+        ink: "#17172e",
+        body: "#555872",
+        subtle: "#8a8da3",
+        line: "#e4e4ef",
+        panel: "#f3f3fa",
         brand: {
-          DEFAULT: "#1d4ed8",
-          dark: "#1e3a8a",
-          light: "#eff6ff",
+          DEFAULT: "#4b3bff",
+          dark: "#17172e",
+          light: "#edebff",
         },
       },
       fontFamily: {

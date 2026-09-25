@@ -1,6 +1,6 @@
-# GenAISeer — Marketing Website
+# RTSPoint AI — Marketing Website
 
-Professional, modern marketing site for an AI-first software development boutique. Built with **Next.js 15**, **React 19**, and **Tailwind CSS**, ready for [Vercel](https://vercel.com) deployment.
+Marketing site for RTSPoint, a boutique AI engineering firm. Built with **Next.js 15**, **React 19**, and **Tailwind CSS**, ready for [Vercel](https://vercel.com) deployment.
 
 ## Local development
 
@@ -30,7 +30,7 @@ vercel
 
 ## Content source
 
-Copy and structure derived from `ai_boutique_website.html` in the repo root, extended with expertise sections (Agentic AI, Generative AI, ML, ADLC). Brand is configured in **`lib/brand.ts`** (`wordmarkParts`, `wordmarkAccentIndex`, `fullName`, `slug`).
+Page copy and layout follow `northlane-ai.html` in the repo root. Brand is configured in **`lib/brand.ts`** (`wordmarkParts`, `wordmarkAccentIndex`, `fullName`, `slug`).
 
 ## Next steps
 

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RTSPoint AI | Production AI, engineered and run for you</title>
+<meta name="description" content="RTSPoint is a boutique AI engineering firm offering data engineering, AI readiness assessment, production-grade agentic AI systems, AI managed services and workflow automation with guardrails. Start with a 4-week Proof of Value.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sans:"Geist","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Geist Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --max:1200px;
+  --bg:#FBFBFE; --surface:#FFFFFF; --sunk:#F3F3FA; --ink:#17172E; --ink-2:#555872; --ink-3:#8A8DA3;
+  --line:#E4E4EF; --accent:#4B3BFF; --accent-soft:#EDEBFF; --tint:#EFEDFF; --tint-line:#D9D5FF;
+  --ok:#12966F; --ok-soft:#E1F5EC; --warn:#B26B00; --warn-soft:#FFF1DB;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.03em;line-height:1.06}
+h2{font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch}
+h3{font-size:1.2rem;letter-spacing:-.015em;line-height:1.25}
+p{margin:0}
+.lede{font-size:1.13rem;color:var(--ink-2);max-width:58ch;margin-top:18px;line-height:1.55}
+section{padding:112px 0}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:.88rem;font-weight:500;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:5px 12px;margin-bottom:20px}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:56px}
+.sec-head .lede{margin-top:0}
+@media (max-width:860px){.sec-head{grid-template-columns:1fr;gap:18px}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:500 .98rem var(--sans);padding:12px 20px;border-radius:10px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:background .15s,border-color .15s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--ink)}
+.btn-ghost{border-color:var(--line);background:var(--surface);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink-3)}
+
+/* Nav */
+header.nav{position:sticky;top:0;z-index:30;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px}
+.logo{display:flex;align-items:center;font-weight:600;font-size:1.2rem;letter-spacing:-.03em;text-decoration:none;color:var(--ink)}
+.wordmark-accent{color:var(--accent)}
+.wordmark{line-height:1}
+.wordmark-o{position:relative;display:inline-block}
+.wordmark-o i{position:absolute;left:50%;top:.02em;width:.22em;height:.22em;background:var(--accent);transform:translate(-50%,-65%) rotate(45deg);border-radius:1px}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;color:var(--ink-2);font-size:.94rem}
+.nav ul a:hover{color:var(--ink)}
+.nav .btn{padding:9px 16px;font-size:.92rem}
+@media (max-width:980px){.nav ul{display:none}}
+
+/* Hero */
+.hero{padding:92px 0 72px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 50% 0%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 0%,#000 30%,transparent 75%);opacity:.6;pointer-events:none}
+.hero .wrap{position:relative;text-align:center}
+.pill{display:inline-flex;align-items:center;gap:10px;font-size:.88rem;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 6px;text-decoration:none}
+.pill b{background:var(--accent-soft);color:var(--accent);font-weight:600;border-radius:999px;padding:3px 10px;font-size:.8rem}
+.hero h1{font-size:clamp(2.7rem,7vw,5.3rem);letter-spacing:-.045em;max-width:15ch;margin:26px auto 0}
+.hero .lede{margin:24px auto 0;font-size:1.2rem;max-width:60ch}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px}
+
+/* Service strip under hero */
+.strip{margin-top:56px;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;text-align:left}
+.strip a{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;transition:border-color .15s,transform .15s}
+.strip a:hover{border-color:var(--accent);transform:translateY(-2px)}
+.strip .n{font:500 .78rem var(--mono);color:var(--accent)}
+.strip b{display:block;font-weight:600;font-size:.98rem;letter-spacing:-.01em;line-height:1.3}
+@media (max-width:980px){.strip{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.strip{grid-template-columns:1fr}}
+
+/* Agent trace */
+.trace{max-width:900px;margin:40px auto 0;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 40px 80px -40px color-mix(in srgb,var(--accent) 35%,transparent);overflow:hidden}
+.trace-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--line);background:var(--sunk);font-size:.85rem;color:var(--ink-2)}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.live{display:flex;align-items:center;gap:8px}
+.live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px var(--ok-soft)}
+.trace-body{display:grid;grid-template-columns:1.5fr 1fr}
+.log{padding:20px 22px;font:400 .85rem/1.9 var(--mono);color:var(--ink-2);border-right:1px solid var(--line)}
+.log div{display:grid;grid-template-columns:62px 1fr;gap:8px;opacity:0;transform:translateY(4px);animation:line .4s ease forwards}
+.log .t{color:var(--ink-3)} .log .k{color:var(--accent);font-weight:500} .log .g{color:var(--ok);font-weight:500} .log .h{color:var(--warn);font-weight:500}
+@keyframes line{to{opacity:1;transform:none}}
+.side{padding:20px 22px;display:grid;gap:14px;align-content:start}
+.metric{border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.metric small{display:block;font-size:.8rem;color:var(--ink-3)}
+.metric b{font-size:1.5rem;font-weight:600;letter-spacing:-.03em}
+.metric .bar{height:6px;border-radius:6px;background:var(--sunk);margin-top:10px;overflow:hidden}
+.metric .bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:6px;animation:fill 1.6s 1.2s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes fill{to{width:var(--w)}}
+@media (max-width:760px){.trace-body{grid-template-columns:1fr}.log{border-right:0;border-bottom:1px solid var(--line)}.side{grid-template-columns:1fr 1fr}}
+
+/* Services: vertical tabs */
+.svc-wrap{display:grid;grid-template-columns:340px 1fr;gap:20px;align-items:start}
+.svc-tabs{display:grid;gap:8px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 88px)}
+.svc-tab{display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:center;text-align:left;width:100%;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer;transition:border-color .15s,background .15s}
+.svc-tab:hover{border-color:var(--ink-3)}
+.svc-tab .ti{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:var(--sunk);color:var(--ink-2);transition:background .15s,color .15s}
+.svc-tab b{display:block;font-weight:600;font-size:1rem;letter-spacing:-.01em;line-height:1.3}
+.svc-tab small{display:block;color:var(--ink-3);font-size:.84rem;margin-top:2px}
+.svc-tab[aria-selected="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.svc-tab[aria-selected="true"] .ti{background:var(--accent);color:#fff}
+.svc-panel{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:40px;min-height:100%}
+.svc-panel[hidden]{display:none}
+.svc-panel{animation:fadein .35s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.sp-head{display:flex;align-items:center;gap:18px;padding-bottom:26px;border-bottom:1px solid var(--line)}
+.sp-head .big-ico{flex:none;width:56px;height:56px;border-radius:14px;background:var(--accent);color:#fff;display:grid;place-items:center}
+.sp-head h3{font-size:clamp(1.4rem,2.4vw,1.85rem);letter-spacing:-.025em}
+.sp-head p{color:var(--ink-2);margin-top:6px}
+.sp-body{display:grid;grid-template-columns:1.25fr 1fr;gap:36px;padding-top:28px;align-items:start}
+.sp-body > div > p{color:var(--ink-2);font-size:1.02rem}
+.sp-label{display:block;font-weight:600;font-size:.9rem;margin:24px 0 10px}
+.out{display:flex;flex-wrap:wrap;gap:8px}
+.out span{font-size:.85rem;padding:5px 11px;border-radius:999px;background:var(--ok-soft);color:var(--ok);font-weight:500}
+.get{background:var(--sunk);border-radius:16px;padding:22px 24px}
+.get .sp-label{margin-top:0}
+.get ul{list-style:none;margin:0;padding:0;display:grid;gap:11px;font-size:.95rem;color:var(--ink-2)}
+.get li{display:grid;grid-template-columns:20px 1fr;gap:8px}
+.get li::before{content:"✓";color:var(--accent);font-weight:600}
+.gflow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font:500 .8rem var(--mono)}
+.gflow span{padding:6px 10px;border-radius:8px}
+.gflow .ai{background:var(--accent-soft);color:var(--accent)}
+.gflow .ru{background:var(--ok-soft);color:var(--ok)}
+.gflow .hu{background:var(--warn-soft);color:var(--warn)}
+.gflow em{font-style:normal;color:var(--ink-3)}
+.sp-nav{display:flex;justify-content:space-between;margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}
+.sp-nav button{font:500 .92rem var(--sans);background:none;border:0;color:var(--ink-2);cursor:pointer;padding:6px 0}
+.sp-nav button:hover{color:var(--accent)}
+@media (max-width:1000px){
+  .svc-wrap{grid-template-columns:1fr}
+  .svc-tabs{position:static;display:flex;overflow-x:auto;gap:8px;padding-bottom:4px;scrollbar-width:none}
+  .svc-tab{flex:0 0 auto;width:auto;grid-template-columns:32px auto;padding:10px 14px}
+  .svc-tab .ti{width:32px;height:32px}
+  .svc-tab small{display:none}
+  .sp-body{grid-template-columns:1fr}
+}
+@media (max-width:560px){.svc-panel{padding:24px 20px}.sp-head{align-items:flex-start}.sp-head .big-ico{width:46px;height:46px}}
+
+/* PoV */
+.pov{background:var(--tint);border-block:1px solid var(--tint-line)}
+.pov-top{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.pov-why{display:grid;gap:12px}
+.pov-why div{display:grid;grid-template-columns:44px 1fr;gap:14px;background:var(--surface);border:1px solid var(--tint-line);border-radius:14px;padding:18px}
+.pov-why .i{width:44px;height:44px;border-radius:12px;background:var(--accent);color:#fff;display:grid;place-items:center}
+.pov-why b{display:block;font-weight:600}
+.pov-why p{color:var(--ink-2);font-size:.94rem}
+.weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:64px}
+.week{border:1px solid var(--tint-line);border-radius:16px;padding:22px;background:var(--surface)}
+.week .w{font:500 .82rem var(--mono);color:var(--accent)}
+.week h3{margin:10px 0 8px;font-size:1.1rem}
+.week p{color:var(--ink-2);font-size:.93rem}
+.track{height:4px;border-radius:4px;background:var(--sunk);margin-top:16px;overflow:hidden}
+.track i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--ok))}
+.deliver{margin-top:16px;display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:center;border:1px solid var(--tint-line);border-radius:16px;padding:24px 28px;background:var(--surface)}
+.deliver small{display:block;font-weight:600;margin-bottom:12px}
+.deliver ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;color:var(--ink-2);font-size:.95rem}
+.deliver li::before{content:"✓";color:var(--ok);margin-right:10px}
+.deliver .cta{justify-self:end;text-align:right}
+.deliver .cta p{color:var(--ink-2);font-size:.9rem;margin-bottom:12px}
+@media (max-width:960px){.pov-top{grid-template-columns:1fr;gap:36px}.weeks{grid-template-columns:1fr 1fr}.deliver{grid-template-columns:1fr}.deliver .cta{justify-self:start;text-align:left}}
+@media (max-width:560px){.weeks,.deliver ul{grid-template-columns:1fr}}
+
+/* Cloud */
+.horiz{margin-top:8px;border:1px solid var(--line);border-radius:20px;background:var(--surface);padding:22px}
+.horiz-top{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.horiz-top div{border:1px solid var(--line);border-radius:12px;padding:14px;font-weight:600;font-size:.92rem;line-height:1.3;background:var(--bg);text-align:center;min-height:68px;display:grid;place-items:center}
+.horiz-band{margin-top:10px;border-radius:12px;background:var(--accent);color:#fff;padding:16px 20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px}
+.horiz-band b{font-weight:600;font-size:1.02rem}
+.horiz-band span{display:flex;gap:8px;flex-wrap:wrap}
+.horiz-band span i{font-style:normal;font-size:.86rem;background:rgba(255,255,255,.16);border-radius:8px;padding:5px 11px}
+.horiz-band2{margin-top:8px;border-radius:12px;background:var(--accent-soft);color:var(--accent);padding:12px 20px;font-weight:500;font-size:.93rem;text-align:center}
+@media (max-width:860px){.horiz-top{grid-template-columns:1fr 1fr}}
+.clouds{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.cloud{border:1px solid var(--line);border-radius:18px;padding:26px;background:var(--surface)}
+.cloud h3{font-size:1.25rem}
+.cloud p{color:var(--ink-2);font-size:.94rem;margin-top:8px}
+.cloud .row{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.cloud .row span{font-size:.82rem;padding:5px 10px;border-radius:8px;background:var(--sunk);color:var(--ink-2)}
+@media (max-width:900px){.clouds{grid-template-columns:1fr}}
+.cloud-benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:48px}
+.cloud-benefits b{display:block;font-weight:600;margin-bottom:6px}
+.cloud-benefits p{color:var(--ink-2);font-size:.94rem}
+@media (max-width:860px){.cloud-benefits{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.cloud-benefits{grid-template-columns:1fr}}
+
+/* Engines */
+.engines{background:var(--sunk);border-block:1px solid var(--line)}
+.eng-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.domain{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px;display:flex;flex-direction:column}
+.domain .d{display:flex;justify-content:space-between;align-items:center}
+.domain h3{font-size:1.35rem}
+.domain .live-tag{font-size:.78rem;font-weight:500;color:var(--ok);background:var(--ok-soft);padding:3px 9px;border-radius:999px}
+.domain > p{color:var(--ink-2);font-size:.95rem;margin-top:10px}
+.engine{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.engine:first-of-type{margin-top:20px}
+.engine b{display:block;font-weight:600;font-size:.98rem}
+.engine span{color:var(--ink-2);font-size:.9rem}
+.next{margin-top:16px;border:1.5px dashed var(--tint-line);border-radius:20px;padding:24px 28px;background:var(--surface);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.next b{font-weight:600;font-size:1.1rem}
+.next p{color:var(--ink-2);font-size:.95rem;margin-top:4px;max-width:62ch}
+.how-eng{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
+.how-eng .n{font:500 .82rem var(--mono);color:var(--accent)}
+.how-eng b{display:block;font-weight:600;margin:6px 0}
+.how-eng p{color:var(--ink-2);font-size:.94rem}
+@media (max-width:960px){.eng-grid,.how-eng{grid-template-columns:1fr}}
+
+/* Approach */
+.life{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--surface)}
+.stage{padding:26px 22px;border-right:1px solid var(--line)}
+.stage:last-child{border-right:0}
+.stage .s{font:500 .82rem var(--mono);color:var(--accent)}
+.stage h3{margin:10px 0 8px;font-size:1.1rem}
+.stage p{color:var(--ink-2);font-size:.93rem}
+.stage .ref{margin-top:14px;font-size:.82rem;display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:6px;padding:3px 8px;font-weight:500}
+.stage.pv{background:var(--tint)}
+@media (max-width:960px){.life{grid-template-columns:1fr 1fr}.stage{border-bottom:1px solid var(--line)}.stage:nth-child(2n){border-right:0}}
+@media (max-width:560px){.life{grid-template-columns:1fr}.stage{border-right:0}}
+.promises{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:48px}
+.promises b{display:block;font-weight:600;margin-bottom:6px}
+.promises p{color:var(--ink-2);font-size:.94rem}
+@media (max-width:860px){.promises{grid-template-columns:1fr 1fr}}
+
+/* Why */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.why-grid div{background:var(--surface);padding:30px}
+.why-grid .big{font-size:2.3rem;font-weight:600;letter-spacing:-.04em;line-height:1;color:var(--accent)}
+.why-grid h3{margin:14px 0 6px;font-size:1.08rem}
+.why-grid p{color:var(--ink-2);font-size:.94rem}
+@media (max-width:860px){.why-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.why-grid{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px}
+details{border-bottom:1px solid var(--line);padding:22px 0}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600;font-size:1.06rem;list-style:none;display:flex;justify-content:space-between;gap:20px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--ink-3);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--ink-2);margin-top:12px;max-width:66ch}
+@media (max-width:860px){.faq-wrap{grid-template-columns:1fr;gap:32px}}
+
+/* Contact */
+.contact{padding-top:24px}
+.cbox{border:1px solid var(--tint-line);background:var(--tint);border-radius:28px;padding:64px;display:grid;grid-template-columns:1fr 1fr;gap:56px;position:relative;overflow:hidden}
+.cbox::before{content:"";position:absolute;width:520px;height:520px;right:-160px;top:-220px;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 65%);pointer-events:none}
+.cbox > *{position:relative}
+.meta{margin-top:28px;display:grid;gap:10px;color:var(--ink-2);font-size:.95rem}
+.meta b{color:var(--ink);font-weight:500;display:inline-block;min-width:92px}
+form{background:var(--surface);border-radius:18px;padding:28px;display:grid;gap:14px;border:1px solid var(--tint-line)}
+label{font-size:.88rem;font-weight:500;display:grid;gap:6px}
+input,select,textarea{font:400 .98rem var(--sans);padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+textarea{min-height:92px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.status{display:none;padding:12px 14px;border-radius:10px;font-size:.92rem;font-weight:500}
+.status.ok{display:block;background:var(--ok-soft);color:var(--ok)}
+.status.err{display:block;background:var(--warn-soft);color:var(--warn)}
+@media (max-width:900px){.cbox{grid-template-columns:1fr;padding:36px 24px;gap:36px}.row2{grid-template-columns:1fr}}
+
+footer{padding:56px 0 40px;font-size:.92rem;color:var(--ink-2)}
+.fgrid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:32px;padding-bottom:40px;border-bottom:1px solid var(--line)}
+.fgrid h4{margin:0 0 12px;font-size:.9rem;font-weight:600;color:var(--ink)}
+.fgrid ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.fgrid a{text-decoration:none}.fgrid a:hover{color:var(--ink)}
+.fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:24px;color:var(--ink-3)}
+@media (max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="RTSPoint AI home"><span class="wordmark">RTS<span class="wordmark-accent">P<span class="wordmark-o">o<i></i></span>int</span></span></a>
+    <nav aria-label="Main"><ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pov">Proof of Value</a></li>
+      <li><a href="#cloud">Cloud expertise</a></li>
+      <li><a href="#engines">AI engines</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul></nav>
+    <a href="#contact" class="btn btn-primary">Talk to us</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <a href="#pov" class="pill"><b>Proof of Value</b> See a working prototype in 4 weeks</a>
+    <h1>Production AI, engineered and run for you.</h1>
+    <p class="lede">RTSPoint is a boutique AI engineering partner. From data foundations to agentic systems running in production, we build AI that delivers measurable business value, and we stay to run it.</p>
+    <div class="hero-ctas">
+      <a href="#pov" class="btn btn-primary">Start a Proof of Value</a>
+      <a href="#services" class="btn btn-ghost">Explore our services</a>
+    </div>
+
+    <nav class="strip" aria-label="Our services">
+      <a href="#s1"><b>Data engineering</b></a>
+      <a href="#s2"><b>AI readiness assessment</b></a>
+      <a href="#s3"><b>Production‑grade agentic AI systems</b></a>
+      <a href="#s4"><b>AI managed services</b></a>
+      <a href="#s5"><b>Workflow automation with guardrails</b></a>
+    </nav>
+
+    <div class="trace" aria-label="Illustration of a production AI agent completing a task with guardrail checks">
+      <div class="trace-bar"><div class="dots"><i></i><i></i><i></i></div><span>agent-run #4812</span><span class="live">Running in production</span></div>
+      <div class="trace-body">
+        <div class="log">
+          <div style="animation-delay:.2s"><span class="t">00:00.0</span><span><span class="k">intent</span> process request · change + refund</span></div>
+          <div style="animation-delay:.6s"><span class="t">00:00.4</span><span><span class="k">retrieve</span> records, policy docs, account tier</span></div>
+          <div style="animation-delay:1.0s"><span class="t">00:01.1</span><span><span class="k">plan</span> 3 steps · modify → refund → notify</span></div>
+          <div style="animation-delay:1.4s"><span class="t">00:01.6</span><span><span class="k">tool</span> orders_api.modify() → ok</span></div>
+          <div style="animation-delay:1.8s"><span class="t">00:02.0</span><span><span class="g">guardrail</span> refund ≤ policy limit → pass</span></div>
+          <div style="animation-delay:2.2s"><span class="t">00:02.1</span><span><span class="h">approval</span> above auto‑limit → routed to human</span></div>
+          <div style="animation-delay:2.8s"><span class="t">00:34.7</span><span><span class="g">approved</span> payments_api.refund() → ok</span></div>
+          <div style="animation-delay:3.2s"><span class="t">00:35.0</span><span><span class="k">notify</span> customer updated · audit logged</span></div>
+        </div>
+        <div class="side">
+          <div class="metric"><small>Completed without hand‑off</small><b>82%</b><div class="bar"><i style="--w:82%"></i></div></div>
+          <div class="metric"><small>Actions within policy</small><b>100%</b><div class="bar"><i style="--w:100%;background:var(--ok)"></i></div></div>
+          <div class="metric"><small>Cost per task</small><b>$0.04</b><div class="bar"><i style="--w:18%"></i></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="padding-top:72px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="kicker">Our services</span><h2>One path from data to production AI.</h2></div>
+      <p class="lede">Engage us for a single service to close a gap, or combine them with one accountable team, from your first assessment to a system running and improving at scale.</p>
+    </div>
+
+    <div class="svc-wrap">
+      <div class="svc-tabs" role="tablist" aria-label="Our services" aria-orientation="vertical">
+        <button class="svc-tab" role="tab" id="t1" aria-controls="s1" aria-selected="true" tabindex="0"><span class="ti" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span><span><b>Data engineering</b><small>Foundation for AI</small></span></button>
+        <button class="svc-tab" role="tab" id="t2" aria-controls="s2" aria-selected="false" tabindex="-1"><span class="ti" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><span><b>AI readiness assessment</b><small>2–3 week assessment</small></span></button>
+        <button class="svc-tab" role="tab" id="t3" aria-controls="s3" aria-selected="false" tabindex="-1"><span class="ti" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M7.3 11l9.4-4.6M7.3 13l9.4 4.6"/></svg></span><span><b>Agentic AI systems</b><small>Build and orchestrate</small></span></button>
+        <button class="svc-tab" role="tab" id="t4" aria-controls="s4" aria-selected="false" tabindex="-1"><span class="ti" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span><span><b>AI managed services</b><small>Operate and improve</small></span></button>
+        <button class="svc-tab" role="tab" id="t5" aria-controls="s5" aria-selected="false" tabindex="-1"><span class="ti" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke-linecap="round"/></svg></span><span><b>Workflow automation</b><small>With guardrails</small></span></button>
+      </div>
+      <div>
+      <article class="svc-panel" role="tabpanel" id="s1" aria-labelledby="t1">
+        <div class="sp-head"><span class="big-ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span><div><h3>Data engineering</h3><p>The foundation every AI system stands on.</p></div></div>
+        <div class="sp-body">
+          <div><p>AI is only as good as the data behind it. We bring scattered data from your applications, databases and third‑party sources into clean, governed, AI‑ready platforms, built for both analytics and real‑time AI workloads.</p><span class="sp-label">Business outcomes</span><div class="out"><span>Trusted, unified data</span><span>Faster AI delivery</span><span>Lower data costs</span></div></div>
+          <div class="get"><span class="sp-label">What you get</span><ul><li>Modern lakehouse and data warehouse design</li><li>Batch and real‑time data pipelines</li><li>Vector stores and knowledge bases for AI</li><li>Data quality, lineage and access governance</li></ul></div>
+        </div>
+        <div class="sp-nav"><span></span><button type="button" data-go="2">AI readiness assessment →</button></div>
+      </article>
+      <article class="svc-panel" role="tabpanel" id="s2" aria-labelledby="t2" hidden>
+        <div class="sp-head"><span class="big-ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><div><h3>AI readiness assessment</h3><p>Know where you stand before you invest.</p></div></div>
+        <div class="sp-body">
+          <div><p>We assess your data, technology, people, processes and governance against what AI actually needs. Then we identify and rank the use cases that will deliver the highest value with the least risk, so you fund the right initiatives first.</p><span class="sp-label">Business outcomes</span><div class="out"><span>Clear priorities</span><span>Board‑ready business case</span><span>Reduced risk</span></div></div>
+          <div class="get"><span class="sp-label">What you get</span><ul><li>AI readiness scorecard across five dimensions</li><li>Prioritised use‑case roadmap with ROI estimates</li><li>Gap analysis and remediation plan</li><li>Recommended architecture and budget</li></ul></div>
+        </div>
+        <div class="sp-nav"><button type="button" data-go="1">← Data engineering</button><button type="button" data-go="3">Agentic AI systems →</button></div>
+      </article>
+      <article class="svc-panel" role="tabpanel" id="s3" aria-labelledby="t3" hidden>
+        <div class="sp-head"><span class="big-ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M7.3 11l9.4-4.6M7.3 13l9.4 4.6"/></svg></span><div><h3>Production‑grade agentic AI systems</h3><p>Agents that do real work, reliably and at scale.</p></div></div>
+        <div class="sp-body">
+          <div><p>We design and build AI agents that plan, use your tools and complete multi‑step tasks, coordinated by a robust orchestration layer. Our proven accelerators for memory, tool calling, evaluation and observability take you from concept to production in weeks, not quarters.</p><span class="sp-label">Business outcomes</span><div class="out"><span>Faster time to market</span><span>Reliable at scale</span><span>Controlled costs</span></div></div>
+          <div class="get"><span class="sp-label">What you get</span><ul><li>Single and multi‑agent architecture and orchestration</li><li>Reusable accelerators and blueprints</li><li>Automated evaluation before every release</li><li>Tracing, latency and cost monitoring</li><li>Security, access control and compliance built in</li></ul></div>
+        </div>
+        <div class="sp-nav"><button type="button" data-go="2">← AI readiness assessment</button><button type="button" data-go="4">AI managed services →</button></div>
+      </article>
+      <article class="svc-panel" role="tabpanel" id="s4" aria-labelledby="t4" hidden>
+        <div class="sp-head"><span class="big-ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span><div><h3>AI managed services</h3><p>We build it with you, then run it for you.</p></div></div>
+        <div class="sp-body">
+          <div><p>AI systems need constant care: models drift, vendors release new versions, costs creep and usage grows. As your long‑term partner, we operate, monitor and continuously improve your AI products, so your team can focus on the business.</p><span class="sp-label">Business outcomes</span><div class="out"><span>Always‑on reliability</span><span>Continuous improvement</span><span>Predictable spend</span></div></div>
+          <div class="get"><span class="sp-label">What you get</span><ul><li>24×7 monitoring with agreed service levels</li><li>Model, prompt and version upgrades</li><li>Drift, accuracy and cost optimisation</li><li>Monthly value and performance reports</li></ul></div>
+        </div>
+        <div class="sp-nav"><button type="button" data-go="3">← Agentic AI systems</button><button type="button" data-go="5">Workflow automation →</button></div>
+      </article>
+      <article class="svc-panel" role="tabpanel" id="s5" aria-labelledby="t5" hidden>
+        <div class="sp-head"><span class="big-ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke-linecap="round"/></svg></span><div><h3>Workflow automation with deterministic guardrails</h3><p>Organisation‑wide automation your risk and finance teams can sign off.</p></div></div>
+        <div class="sp-body">
+          <div><p>We automate end‑to‑end workflows across finance, operations, customer service and HR. AI handles the judgement; hard‑coded business rules enforce limits it can never override. High‑impact steps route to a person, and every decision is logged.</p><span class="sp-label">How every action is controlled</span><div class="gflow" aria-label="Guardrail flow"><span class="ai">AI proposes</span><em>→</em><span class="ru">Rules check</span><em>→</em><span class="hu">Human approves</span><em>→</em><span class="ru">Execute and log</span></div><span class="sp-label">Business outcomes</span><div class="out"><span>Predictable outcomes</span><span>Full auditability</span><span>Hours saved every week</span></div></div>
+          <div class="get"><span class="sp-label">What you get</span><ul><li>Process discovery and automation design</li><li>Policy rules enforced outside the AI</li><li>Human‑in‑the‑loop approval paths</li><li>Complete audit trail and explainability</li><li>Integration with ERP, CRM and ticketing tools</li></ul></div>
+        </div>
+        <div class="sp-nav"><button type="button" data-go="4">← AI managed services</button><a href="#pov" style="font-weight:500;color:var(--accent);text-decoration:none;font-size:.92rem;padding:6px 0">See it working: Proof of Value →</a></div>
+      </article>
+      </div>
+    </div>
+    </div>
+</section>
+
+<!-- PROOF OF VALUE -->
+<section class="pov" id="pov">
+  <div class="wrap">
+    <div class="pov-top">
+      <div>
+        <span class="kicker">Our strategic offering</span>
+        <h2>Proof of Value: see it working before you commit.</h2>
+        <p class="lede">Slide decks don’t build confidence. Working software does. In four weeks, we deliver a working prototype on your real data, on a vendor‑agnostic agentic architecture, measured against the goals you set on day one.</p>
+        <div class="hero-ctas" style="justify-content:flex-start"><a href="#contact" class="btn btn-primary">Book your Proof of Value</a></div>
+      </div>
+      <div class="pov-why">
+        <div><span class="i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><span><b>See it, touch it, trust it</b><p>Your stakeholders use a real prototype, not a concept demo.</p></span></div>
+        <div><span class="i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7"/></svg></span><span><b>Decide on evidence</b><p>A results scorecard and production cost model support a clear go or no‑go.</p></span></div>
+        <div><span class="i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/></svg></span><span><b>Low risk, fixed price</b><p>Four weeks, fixed scope, no lock‑in. The prototype and learnings are yours.</p></span></div>
+      </div>
+    </div>
+
+    <div class="weeks">
+      <div class="week"><span class="w">Week 1</span><h3>Frame and connect</h3><p>Agree success measures, map the workflow and connect your data securely.</p><div class="track"><i style="width:25%"></i></div></div>
+      <div class="week"><span class="w">Week 2</span><h3>Build the prototype</h3><p>Stand up agents on our accelerators, with guardrails from day one.</p><div class="track"><i style="width:50%"></i></div></div>
+      <div class="week"><span class="w">Week 3</span><h3>Test with real users</h3><p>Controlled rollout to a small group, with daily evaluation and tuning.</p><div class="track"><i style="width:75%"></i></div></div>
+      <div class="week"><span class="w">Week 4</span><h3>Measure and decide</h3><p>Results review, production cost model and a scale‑up plan.</p><div class="track"><i style="width:100%"></i></div></div>
+    </div>
+    <div class="deliver">
+      <div><small>What you walk away with</small><ul>
+        <li>A working prototype on your data</li>
+        <li>Results scorecard against your goals</li>
+        <li>Production cost and ROI estimate</li>
+        <li>Architecture and roadmap to scale</li>
+      </ul></div>
+      <div class="cta"><p>Scale it with us, or take it in‑house.</p><a href="#contact" class="btn btn-primary">Start in 4 weeks</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOUD EXPERTISE -->
+<section id="cloud">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="kicker">Horizontal expertise</span><h2>Deep cloud expertise, across every service.</h2></div>
+      <p class="lede">Cloud isn’t a separate project for us. It’s the expertise that runs underneath everything we deliver. We design, build and operate on AWS, Microsoft Azure and Google Cloud, and keep your architecture free to move between them.</p>
+    </div>
+
+    <div class="horiz" aria-label="Cloud expertise spans all our services">
+      <div class="horiz-top">
+        <div>Data engineering</div><div>AI readiness assessment</div><div>Agentic AI systems</div><div>AI managed services</div><div>Workflow automation</div>
+      </div>
+      <div class="horiz-band"><b>Cloud expertise</b><span><i>AWS</i><i>Microsoft Azure</i><i>Google Cloud</i><i>Hybrid and on‑premise</i></span></div>
+      <div class="horiz-band2">Vendor‑agnostic architecture: switch models or clouds without rebuilding</div>
+    </div>
+
+    <div class="clouds">
+      <div class="cloud"><h3>AWS</h3><p>AI and data platforms built on Amazon’s managed AI and analytics stack.</p><div class="row"><span>Amazon Bedrock</span><span>SageMaker</span><span>Glue</span><span>Redshift</span><span>Lambda</span></div></div>
+      <div class="cloud"><h3>Microsoft Azure</h3><p>Enterprise AI integrated with the Microsoft ecosystem your teams already use.</p><div class="row"><span>Azure AI Foundry</span><span>Azure OpenAI</span><span>Microsoft Fabric</span><span>AKS</span></div></div>
+      <div class="cloud"><h3>Google Cloud</h3><p>Data‑first AI solutions on Google’s analytics and model platform.</p><div class="row"><span>Vertex AI</span><span>BigQuery</span><span>Dataflow</span><span>GKE</span></div></div>
+    </div>
+
+    <div class="cloud-benefits">
+      <div><b>Right cloud for the job</b><p>Independent advice on the best fit for your workloads, skills and budget.</p></div>
+      <div><b>Your data stays yours</b><p>We deploy in your cloud account, under your security and data residency policies.</p></div>
+      <div><b>Built to optimise cost</b><p>Architectures sized for real usage, with spend tracked from day one.</p></div>
+      <div><b>Partnership benefits</b><p>We’re building partnerships with AWS, Azure and Google Cloud, opening access to credits and co‑funding programmes that can offset your costs.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAIN ENGINES -->
+<section class="engines" id="engines">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="kicker">Domain‑specific AI engines</span><h2>Pre‑built engines that give you a head start.</h2></div>
+      <p class="lede">Alongside our services, we develop ready‑to‑adapt AI engines for specific industries. Instead of starting from a blank page, you begin with a working engine that already understands your domain, then we tune it to your data.</p>
+    </div>
+
+    <div class="eng-grid">
+      <div class="domain">
+        <div class="d"><h3>Retail</h3><span class="live-tag">Available</span></div>
+        <p>For store networks and merchandising teams.</p>
+        <div class="engine"><b>Demand forecasting engine</b><span>Store and SKU‑level forecasts to reduce stock‑outs and overstock.</span></div>
+        <div class="engine"><b>Pricing and markdown engine</b><span>Data‑driven prices that protect margin and improve sell‑through.</span></div>
+        <div class="engine"><b>Store associate copilot</b><span>Instant answers on stock, products and policy for floor staff.</span></div>
+      </div>
+      <div class="domain">
+        <div class="d"><h3>eCommerce</h3><span class="live-tag">Available</span></div>
+        <p>For digital commerce and marketplace teams.</p>
+        <div class="engine"><b>Conversational shopping engine</b><span>AI search and assistance that understands what shoppers mean.</span></div>
+        <div class="engine"><b>Catalogue enrichment engine</b><span>Generate and clean product content and attributes at scale.</span></div>
+        <div class="engine"><b>Personalisation engine</b><span>Real‑time recommendations that lift conversion and basket size.</span></div>
+      </div>
+      <div class="domain">
+        <div class="d"><h3>Travel and hospitality</h3><span class="live-tag">Available</span></div>
+        <p>For airlines, travel sellers and hotel groups.</p>
+        <div class="engine"><b>Disruption and rebooking engine</b><span>Agents that rebook travellers within fare and policy rules.</span></div>
+        <div class="engine"><b>Digital concierge engine</b><span>24×7 guest service, requests and upsells in any language.</span></div>
+        <div class="engine"><b>Revenue and rate engine</b><span>Rate recommendations from demand, events and market data.</span></div>
+      </div>
+    </div>
+
+    <div class="next">
+      <div><b>More domains on the roadmap</b><p>We add new engines as we go deep into new industries. Working in a different sector? Our services apply everywhere. Tell us about your domain.</p></div>
+      <a href="#contact" class="btn btn-ghost">Suggest a domain</a>
+    </div>
+
+    <div class="how-eng">
+      <div><b>Start from a working base</b><p>Each engine comes with data models, agents and guardrails pre‑built.</p></div>
+      <div><b>Tuned to your business</b><p>We adapt it to your data, rules and systems during a Proof of Value.</p></div>
+      <div><b>Delivered through our services</b><p>Engines are built, deployed and run using our core services.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="kicker">How we work and deliver</span><h2>Five stages. A clear decision at each.</h2></div>
+      <p class="lede">You always know what comes next, what it costs and what it will return. Start at any stage and stop at any gate.</p>
+    </div>
+    <div class="life">
+      <div class="stage"><span class="s">01 · Assess</span><h3>Find the value</h3><p>Score readiness and pick the highest‑return use case.</p><span class="ref">AI readiness assessment</span></div>
+      <div class="stage"><span class="s">02 · Prepare</span><h3>Ready the data</h3><p>Connect and clean the data the use case needs.</p><span class="ref">Data engineering</span></div>
+      <div class="stage pv"><span class="s">03 · Prove</span><h3>Show it working</h3><p>A working prototype on real data in four weeks.</p><span class="ref">Proof of Value</span></div>
+      <div class="stage"><span class="s">04 · Build</span><h3>Scale safely</h3><p>Harden into production with guardrails and integrations.</p><span class="ref">Agentic systems · Workflow automation</span></div>
+      <div class="stage"><span class="s">05 · Run</span><h3>Operate and improve</h3><p>Monitor, optimise and report value every month.</p><span class="ref">AI managed services</span></div>
+    </div>
+    <div class="promises">
+      <div><b>Fixed scope and price</b><p>Each stage is priced upfront against outcomes, not hours.</p></div>
+      <div><b>Working software weekly</b><p>Demos every week, so you steer as we build.</p></div>
+      <div><b>Senior engineers only</b><p>The people you meet are the people who build.</p></div>
+      <div><b>You own it all</b><p>Code, prompts, pipelines and documentation are yours.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2 style="margin-bottom:40px">Why teams choose RTSPoint.</h2>
+    <div class="why-grid">
+      <div><span class="big">4 wks</span><h3>From idea to working prototype</h3><p>Confidence built on evidence, before a larger commitment.</p></div>
+      <div><span class="big">1 team</span><h3>Accountable end to end</h3><p>The same senior people from assessment to operations.</p></div>
+      <div><span class="big">3 clouds</span><h3>Horizontal cloud expertise</h3><p>AWS, Azure and Google Cloud, with no lock‑in to any of them.</p></div>
+      <div><span class="big">100%</span><h3>Actions within policy</h3><p>Deterministic guardrails on every automated step.</p></div>
+      <div><span class="big">Weeks</span><h3>Not quarters, to launch</h3><p>Accelerators and domain engines replace months of groundwork.</p></div>
+      <div><span class="big">24×7</span><h3>Run, not just built</h3><p>We keep your AI accurate, affordable and improving.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="padding-top:0">
+  <div class="wrap faq-wrap">
+    <div><h2>Questions, answered.</h2><p class="lede">Can’t find what you need? <a href="#contact">Talk to an engineer.</a></p></div>
+    <div>
+      <details><summary>We’re early in our AI journey. Where should we start?</summary><p>With an AI readiness assessment. In two to three weeks you’ll know which use cases are worth funding and what needs to be in place first. Many clients follow it directly with a Proof of Value.</p></details>
+      <details><summary>What exactly is a Proof of Value?</summary><p>A fixed‑price, four‑week engagement where we build a working prototype on your real data and measure it against goals you set. It gives your stakeholders something real to see and use, and gives you the evidence to decide whether to scale.</p></details>
+      <details><summary>What makes your agentic systems production‑grade?</summary><p>Automated evaluation before every release, deterministic guardrails on actions, full tracing, cost controls, security review and a plan for managed operations. A demo is where we start, not where we stop.</p></details>
+      <details><summary>Which cloud do you recommend?</summary><p>The one that best fits your existing stack, skills and budget. We work across AWS, Azure and Google Cloud and design for portability, so the choice never locks you in.</p></details>
+      <details><summary>Do you only work with retail, eCommerce and travel companies?</summary><p>No. Our services apply to any industry. Those are the sectors where we already have pre‑built domain engines, and we add new ones regularly.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="cbox">
+      <div>
+        <h2>Let’s find your fastest path to production AI.</h2>
+        <p class="lede">Start with a free 60‑minute working session with our engineers. You leave with a shortlist of high‑value use cases, whether or not we work together.</p>
+        <div class="meta">
+          <span><b>Email</b>hello@rtspoint.ai</span>
+          <span><b>Based in</b>Pune, India · working globally</span>
+          <span><b>Response</b>Within one business day</span>
+        </div>
+      </div>
+      <form id="lead" novalidate>
+        <div class="row2">
+          <label>Name<input name="name" autocomplete="name"></label>
+          <label>Work email<input name="email" type="email" autocomplete="email"></label>
+        </div>
+        <label>Company<input name="company" autocomplete="organization"></label>
+        <label>I’m interested in
+          <select name="interest">
+            <option>Proof of Value (4 weeks)</option>
+            <option>Data engineering</option>
+            <option>AI readiness assessment</option>
+            <option>Production‑grade agentic AI systems</option>
+            <option>AI managed services</option>
+            <option>Workflow automation with guardrails</option>
+            <option>Domain‑specific AI engines</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
+        <label>What would you like to solve?<textarea name="msg" placeholder="For example: automate invoice approvals without breaking finance policy"></textarea></label>
+        <button class="btn btn-primary" type="submit">Book a working session</button>
+        <p class="status" id="status" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div><a href="#top" class="logo"><span class="wordmark">RTS<span class="wordmark-accent">P<span class="wordmark-o">o<i></i></span>int</span></span></a><p style="margin-top:12px;max-width:34ch">Production AI, engineered and run for you.</p></div>
+      <div><h4>Services</h4><ul><li><a href="#s1">Data engineering</a></li><li><a href="#s2">AI readiness assessment</a></li><li><a href="#s3">Agentic AI systems</a></li><li><a href="#s4">AI managed services</a></li><li><a href="#s5">Workflow automation</a></li></ul></div>
+      <div><h4>Offerings</h4><ul><li><a href="#pov">Proof of Value</a></li><li><a href="#cloud">Cloud expertise</a></li><li><a href="#engines">Domain AI engines</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#approach">Approach</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    </div>
+    <div class="fbot"><span>© 2026 RTSPoint AI. All rights reserved.</span><span>Privacy · Terms</span></div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('lead').addEventListener('submit',function(e){
+  e.preventDefault();
+  var f=e.target,s=document.getElementById('status');
+  if(!f.name.value.trim()||!/^\S+@\S+\.\S+$/.test(f.email.value)){
+    s.className='status err';s.textContent='Add your name and a valid work email to book a session.';return;
+  }
+  s.className='status ok';s.textContent='Session requested. We’ll reply within one business day.';
+  f.querySelector('button').disabled=true;
+});
+
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.svc-tab'));
+  function show(n,focus){
+    tabs.forEach(function(t,i){var on=i===n-1;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;document.getElementById('s'+(i+1)).hidden=!on;});
+    if(focus)tabs[n-1].focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(i+1)});
+    t.addEventListener('keydown',function(e){
+      if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();show((i+1)%5+1,true)}
+      if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();show((i+4)%5+1,true)}
+    });
+  });
+  document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(+b.dataset.go,true)})});
+  document.querySelectorAll('a[href^="#s"]').forEach(function(a){
+    var m=a.getAttribute('href').match(/^#s([1-5])$/);if(!m)return;
+    a.addEventListener('click',function(e){e.preventDefault();show(+m[1]);document.getElementById('services').scrollIntoView({behavior:'smooth'});});
+  });
+})();
+</script>
+</body>
+</html>
