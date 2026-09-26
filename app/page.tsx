@@ -1,26 +1,28 @@
 import {
   Approach,
-  Cloud,
+  Architecture,
   Contact,
-  Engines,
-  Faq,
   Hero,
-  ProofOfValue,
+  Industries,
+  Principles,
+  ProofBar,
+  ProofSprint,
   Services,
-  Why,
+  WhyUs,
 } from "@/components/sections";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <ProofBar />
+      <Principles />
       <Services />
-      <ProofOfValue />
-      <Cloud />
-      <Engines />
+      <Industries />
+      <ProofSprint />
+      <Architecture />
+      <WhyUs />
       <Approach />
-      <Why />
-      <Faq />
       <Contact />
     </>
   );

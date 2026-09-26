@@ -1,25 +1,23 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { SiteFooter } from "@/components/SiteFooter";
 import { brand } from "@/lib/brand";
 
-const sans = Geist({
+const geist = Geist({
   subsets: ["latin"],
   variable: "--font-geist",
   display: "swap",
 });
 
-const mono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-  display: "swap",
-});
-
-const title = `${brand.fullName} | Production AI, engineered and run for you`;
+const title = `${brand.fullName} — From fragmented data to AI that works`;
 const description =
-  "RTSPoint is a boutique AI engineering firm offering data engineering, AI readiness assessment, production-grade agentic AI systems, AI managed services and workflow automation with guardrails. Start with a 4-week Proof of Value.";
+  "Enviseer is a senior AI and data engineering partner. We turn high-value opportunities into governed, production-ready systems.";
+
+export const viewport: Viewport = {
+  themeColor: "#fbfbfe",
+};
 
 export const metadata: Metadata = {
   title,
@@ -37,10 +35,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={geist.variable}>
       <body>
+        <a className="skip" href="#main">
+          Skip to content
+        </a>
         <Navbar />
-        <main id="top">{children}</main>
+        <main id="main">{children}</main>
         <SiteFooter />
       </body>
     </html>

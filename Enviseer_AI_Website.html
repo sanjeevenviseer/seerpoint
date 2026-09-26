@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b11">
+  <meta name="description" content="Enviseer is a senior AI and data engineering partner. We turn high-value opportunities into governed, production-ready systems.">
+  <title>Enviseer — From fragmented data to AI that works</title>
+  <style>
+    :root {
+      --ink: #f4f7f5;
+      --muted: #a9b2ad;
+      --bg: #080b11;
+      --panel: #10151d;
+      --panel-2: #141b24;
+      --line: rgba(255,255,255,.12);
+      --line-bright: rgba(255,255,255,.22);
+      --acid: #c7ff46;
+      --mint: #59f0c7;
+      --violet: #a58cff;
+      --max: 1180px;
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 80% 4%, rgba(165,140,255,.13), transparent 30rem),
+        radial-gradient(circle at 12% 28%, rgba(89,240,199,.08), transparent 28rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 2px solid var(--acid); outline-offset: 4px; }
+    ::selection { background: var(--acid); color: #0a0d10; }
+
+    .shell { width: min(var(--max), calc(100% - 40px)); margin-inline: auto; }
+    .skip { position: fixed; left: 16px; top: -60px; z-index: 100; padding: 10px 14px; background: var(--acid); color: #090b0d; border-radius: 8px; }
+    .skip:focus { top: 12px; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid transparent;
+      background: rgba(8,11,17,.72);
+      backdrop-filter: blur(18px);
+      transition: border-color .2s ease;
+    }
+    .site-header.scrolled { border-color: var(--line); }
+    .nav { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 760; letter-spacing: -.03em; }
+    .brand-mark { width: 27px; height: 27px; display: grid; grid-template-columns: 1fr 1fr; gap: 3px; transform: rotate(45deg); }
+    .brand-mark i { display: block; background: var(--acid); border-radius: 2px; }
+    .brand-mark i:nth-child(2), .brand-mark i:nth-child(3) { opacity: .38; }
+    .brand small { color: var(--muted); font-size: 11px; font-weight: 650; letter-spacing: .14em; text-transform: uppercase; }
+    .brand-text { display: flex; align-items: baseline; gap: 7px; }
+    .nav-links { display: flex; align-items: center; gap: 26px; color: #cbd2cf; font-size: 14px; }
+    .nav-links a:hover { color: white; }
+    .nav-cta, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 44px;
+      padding: 0 17px;
+      border: 1px solid var(--line-bright);
+      border-radius: 999px;
+      font-weight: 720;
+      font-size: 14px;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .nav-cta:hover, .button:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.42); }
+    .button.primary { background: var(--acid); border-color: var(--acid); color: #0b0e0d; box-shadow: 0 14px 38px rgba(199,255,70,.14); }
+    .button.secondary { background: rgba(255,255,255,.04); }
+    .button svg { width: 17px; height: 17px; }
+    .menu-button { display: none; border: 0; background: transparent; color: white; padding: 9px; }
+
+    .hero { min-height: 800px; display: grid; align-items: center; padding: 84px 0 74px; position: relative; }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .18;
+      background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, black, transparent 82%);
+    }
+    .hero-grid { position: relative; display: grid; grid-template-columns: 1.06fr .94fr; gap: 72px; align-items: center; }
+    .eyebrow { margin: 0 0 22px; color: var(--acid); font-size: 13px; font-weight: 760; letter-spacing: .14em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 28px; max-width: 760px; font-size: clamp(50px, 6.5vw, 90px); line-height: .96; letter-spacing: -.065em; font-weight: 760; }
+    .hero h1 span { color: var(--acid); }
+    .lede { max-width: 640px; margin-bottom: 34px; color: #c0c8c4; font-size: clamp(18px, 2vw, 22px); line-height: 1.48; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-note { margin-top: 22px; color: var(--muted); font-size: 13px; }
+
+    .system-card {
+      position: relative;
+      min-height: 500px;
+      padding: 24px;
+      overflow: hidden;
+      border: 1px solid var(--line-bright);
+      border-radius: 30px;
+      background: linear-gradient(155deg, rgba(20,27,36,.94), rgba(10,14,20,.94));
+      box-shadow: 0 30px 80px rgba(0,0,0,.38);
+    }
+    .system-card::after { content: ""; position: absolute; width: 240px; height: 240px; right: -90px; top: -100px; border-radius: 50%; background: rgba(89,240,199,.15); filter: blur(60px); }
+    .system-head { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; color: #cbd2cf; font-size: 12px; letter-spacing: .09em; text-transform: uppercase; }
+    .live { display: inline-flex; align-items: center; gap: 8px; color: var(--mint); }
+    .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 5px rgba(89,240,199,.1); animation: pulse 2s infinite; }
+    .flow { display: grid; gap: 12px; position: relative; z-index: 2; }
+    .flow-row { display: grid; grid-template-columns: 32px 1fr auto; gap: 13px; align-items: center; padding: 15px; border: 1px solid var(--line); border-radius: 15px; background: rgba(255,255,255,.025); transition: transform .25s ease, border-color .25s ease, background .25s ease; }
+    .flow-row.active { transform: translateX(7px); border-color: rgba(199,255,70,.52); background: rgba(199,255,70,.055); }
+    .flow-index { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 9px; background: rgba(255,255,255,.07); color: var(--muted); font-size: 11px; font-weight: 760; }
+    .flow-row.active .flow-index { background: var(--acid); color: #11150c; }
+    .flow-copy strong { display: block; font-size: 14px; }
+    .flow-copy span { color: var(--muted); font-size: 12px; }
+    .status { padding: 5px 8px; border-radius: 999px; background: rgba(89,240,199,.1); color: var(--mint); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+    .system-foot { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 20px; }
+    .signal { padding: 12px; border-radius: 13px; background: rgba(255,255,255,.045); }
+    .signal b { display: block; color: var(--acid); font-size: 12px; }
+    .signal span { color: var(--muted); font-size: 10px; }
+
+    .proof-bar { border-block: 1px solid var(--line); background: rgba(255,255,255,.02); }
+    .proof-inner { min-height: 98px; display: grid; grid-template-columns: 1.25fr repeat(3, 1fr); align-items: center; gap: 28px; }
+    .proof-label { color: var(--muted); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
+    .proof-item { font-size: 14px; font-weight: 680; }
+    .proof-item::before { content: "↳"; margin-right: 8px; color: var(--acid); }
+
+    section { padding: 116px 0; }
+    .section-head { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: end; margin-bottom: 56px; }
+    .kicker { color: var(--acid); font-size: 13px; font-weight: 760; letter-spacing: .13em; text-transform: uppercase; }
+    h2 { margin-bottom: 0; max-width: 820px; font-size: clamp(38px, 5vw, 66px); line-height: 1.02; letter-spacing: -.052em; }
+    .section-intro { color: var(--muted); font-size: 18px; max-width: 650px; }
+
+    .principles { padding-top: 88px; }
+    .principle-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-block: 1px solid var(--line); }
+    .principle { padding: 40px 34px; border-right: 1px solid var(--line); }
+    .principle:last-child { border-right: 0; }
+    .principle b { display: block; margin-bottom: 12px; font-size: 22px; letter-spacing: -.025em; }
+    .principle p { margin: 0; color: var(--muted); }
+
+    .services { background: #0b0f16; }
+    .service-list { border-top: 1px solid var(--line); }
+    .service {
+      display: grid;
+      grid-template-columns: 78px 1.1fr .9fr;
+      gap: 28px;
+      padding: 34px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+    .service-number { color: var(--acid); font-size: 13px; font-weight: 750; letter-spacing: .12em; }
+    .service h3 { margin-bottom: 8px; font-size: 27px; letter-spacing: -.03em; }
+    .service p { margin-bottom: 0; color: var(--muted); }
+    .service-detail { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; color: #c6ceca; font-size: 12px; }
+
+    .split-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .industry {
+      min-height: 440px;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, var(--panel-2), var(--panel));
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .industry::before { content: ""; position: absolute; width: 220px; height: 220px; top: -110px; right: -90px; border-radius: 50%; background: var(--glow); filter: blur(50px); opacity: .24; }
+    .industry:nth-child(1) { --glow: var(--violet); }
+    .industry:nth-child(2) { --glow: var(--mint); }
+    .industry h3 { position: relative; margin: 20px 0 12px; font-size: 32px; letter-spacing: -.04em; }
+    .industry p { position: relative; color: var(--muted); }
+    .industry-list { position: relative; margin: auto 0 0; padding: 0; list-style: none; }
+    .industry-list li { padding: 12px 0; border-top: 1px solid var(--line); font-size: 14px; }
+    .industry-list li::before { content: "+"; margin-right: 10px; color: var(--acid); }
+
+    .sprint { background: var(--acid); color: #10140e; }
+    .sprint .kicker { color: #3d4b18; }
+    .sprint .section-intro { color: #354026; }
+    .timeline { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 58px; border-top: 2px solid rgba(11,14,13,.7); }
+    .week { position: relative; padding: 30px 26px 0 0; }
+    .week::before { content: ""; position: absolute; top: -8px; left: 0; width: 14px; height: 14px; border-radius: 50%; background: #11150e; }
+    .week small { display: block; margin-bottom: 10px; font-weight: 770; letter-spacing: .12em; text-transform: uppercase; }
+    .week h3 { margin-bottom: 8px; font-size: 24px; }
+    .week p { color: #354026; font-size: 14px; }
+    .sprint-output { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; margin-top: 64px; padding-top: 32px; border-top: 1px solid rgba(11,14,13,.25); }
+    .sprint-output h3 { font-size: 26px; }
+    .output-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; }
+    .output-list span { padding-bottom: 11px; border-bottom: 1px solid rgba(11,14,13,.22); font-weight: 650; }
+
+    .architecture { background: #0b0f16; }
+    .architecture-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: center; }
+    .architecture-copy h2 { margin: 15px 0 24px; }
+    .architecture-copy p { color: var(--muted); font-size: 18px; }
+    .stack { padding: 26px; border: 1px solid var(--line-bright); border-radius: var(--radius); background: #0f151e; }
+    .stack-row { display: grid; grid-template-columns: 150px 1fr; align-items: center; gap: 20px; padding: 18px; border-bottom: 1px solid var(--line); }
+    .stack-row:last-child { border-bottom: 0; }
+    .stack-row b { color: var(--acid); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+    .stack-row span { color: #d3dad7; font-size: 14px; }
+
+    .why-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+    .why-item { min-height: 230px; padding: 24px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.025); }
+    .why-item strong { display: block; margin-bottom: 32px; color: var(--acid); font-size: 12px; letter-spacing: .12em; }
+    .why-item h3 { font-size: 20px; }
+    .why-item p { color: var(--muted); font-size: 13px; }
+
+    .approach { padding-top: 40px; }
+    .approach-line { display: grid; grid-template-columns: repeat(5, 1fr); }
+    .approach-step { position: relative; padding: 60px 24px 0 0; border-top: 1px solid var(--line-bright); }
+    .approach-step::before { content: attr(data-step); position: absolute; top: -18px; left: 0; width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--line-bright); border-radius: 50%; background: var(--bg); color: var(--acid); font-size: 11px; font-weight: 750; }
+    .approach-step h3 { font-size: 20px; }
+    .approach-step p { color: var(--muted); font-size: 13px; }
+
+    .contact { padding-bottom: 70px; }
+    .contact-card { display: grid; grid-template-columns: 1fr .82fr; gap: 64px; padding: clamp(32px, 6vw, 72px); border: 1px solid var(--line-bright); border-radius: 30px; background: linear-gradient(140deg, #151c26, #0d1219); position: relative; overflow: hidden; }
+    .contact-card::before { content: ""; position: absolute; width: 440px; height: 440px; left: -260px; bottom: -280px; border-radius: 50%; background: rgba(199,255,70,.18); filter: blur(80px); }
+    .contact-copy, .contact-form { position: relative; z-index: 2; }
+    .contact-copy h2 { margin: 15px 0 26px; }
+    .contact-copy p { color: var(--muted); font-size: 18px; }
+    .contact-meta { margin-top: 34px; color: #cdd4d0; font-size: 14px; }
+    .contact-meta a { color: var(--acid); }
+    .contact-form { display: grid; gap: 13px; }
+    .field { display: grid; gap: 7px; }
+    label { color: #c8d0cc; font-size: 12px; font-weight: 680; letter-spacing: .06em; text-transform: uppercase; }
+    input, select, textarea { width: 100%; border: 1px solid var(--line-bright); border-radius: 11px; background: rgba(0,0,0,.24); color: white; padding: 13px 14px; }
+    input::placeholder, textarea::placeholder { color: #737e78; }
+    textarea { min-height: 104px; resize: vertical; }
+    select { color-scheme: dark; }
+    .contact-form .button { cursor: pointer; min-height: 48px; margin-top: 4px; }
+    .form-note { min-height: 20px; margin: 0; color: var(--muted); font-size: 12px; }
+
+    footer { padding: 32px 0 48px; color: var(--muted); font-size: 12px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
+    .footer-links { display: flex; gap: 20px; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+
+    @media (max-width: 1040px) {
+      .hero-grid, .architecture-grid, .contact-card { grid-template-columns: 1fr; }
+      .hero { padding-top: 64px; }
+      .hero-copy { max-width: 800px; }
+      .system-card { min-height: auto; }
+      .why-grid { grid-template-columns: repeat(3, 1fr); }
+      .why-item:nth-child(4), .why-item:nth-child(5) { min-height: 190px; }
+    }
+    @media (max-width: 820px) {
+      .menu-button { display: block; }
+      .nav-links { display: none; position: absolute; top: 74px; left: 20px; right: 20px; padding: 18px; border: 1px solid var(--line-bright); border-radius: 16px; background: #10151d; flex-direction: column; align-items: stretch; gap: 5px; box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 10px; }
+      .nav-links .nav-cta { margin-top: 6px; }
+      .section-head, .sprint-output { grid-template-columns: 1fr; gap: 18px; }
+      .proof-inner { grid-template-columns: 1fr 1fr; padding: 24px 0; }
+      .proof-label { grid-column: 1 / -1; }
+      .service { grid-template-columns: 54px 1fr; }
+      .service-detail { grid-column: 2; }
+      .split-panel { grid-template-columns: 1fr; }
+      .timeline, .approach-line { grid-template-columns: 1fr 1fr; gap: 32px 0; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .architecture-grid { gap: 42px; }
+    }
+    @media (max-width: 560px) {
+      .shell { width: min(100% - 28px, var(--max)); }
+      .brand small { display: none; }
+      .hero { min-height: auto; padding: 58px 0 64px; }
+      .hero-grid { gap: 46px; }
+      h1 { font-size: 50px; }
+      section { padding: 86px 0; }
+      .system-card { padding: 16px; border-radius: 21px; }
+      .flow-row { grid-template-columns: 30px 1fr; }
+      .flow-row .status { display: none; }
+      .system-foot { grid-template-columns: 1fr; }
+      .proof-inner, .timeline, .output-list, .why-grid, .approach-line { grid-template-columns: 1fr; }
+      .proof-label { grid-column: auto; }
+      .principle-grid { grid-template-columns: 1fr; }
+      .principle { border-right: 0; border-bottom: 1px solid var(--line); padding-inline: 0; }
+      .principle:last-child { border-bottom: 0; }
+      .service { grid-template-columns: 1fr; gap: 9px; }
+      .service-detail { grid-column: auto; margin-top: 8px; }
+      .industry { min-height: 390px; padding: 26px; }
+      .week { padding-top: 26px; }
+      .sprint-output { margin-top: 46px; }
+      .stack { padding: 12px; }
+      .stack-row { grid-template-columns: 1fr; gap: 6px; }
+      .contact-card { padding: 28px 22px; gap: 42px; }
+      .footer-inner { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" id="top">
+    <nav class="nav shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Enviseer home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="brand-text">Enviseer <small>AI + Data</small></span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#services">Services</a>
+        <a href="#industries">Industries</a>
+        <a href="#proof-sprint">Proof Sprint</a>
+        <a href="#why-us">Why us</a>
+        <a class="nav-cta" href="#contact">Start a conversation</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-grid shell">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">AI + Data. Strategy to production.</p>
+          <h1 id="hero-title">From fragmented data to AI that <span>works.</span></h1>
+          <p class="lede">We are a senior AI and data engineering partner. We find the right opportunity, ready the data, build the system, and stay accountable through production.</p>
+          <div class="actions">
+            <a class="button primary" href="#contact">Book a working session <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button secondary" href="#proof-sprint">See the 4-week Proof Sprint</a>
+          </div>
+          <p class="hero-note">Founder-led discovery. Senior delivery. Your data, your IP, your choice of cloud.</p>
+        </div>
+
+        <div class="system-card reveal" aria-label="Illustration of an AI system moving from business goal to governed production action">
+          <div class="system-head"><span>AI value loop</span><span class="live">System ready</span></div>
+          <div class="flow">
+            <div class="flow-row active"><span class="flow-index">01</span><div class="flow-copy"><strong>Business outcome</strong><span>Value hypothesis + decision metric</span></div><span class="status">Defined</span></div>
+            <div class="flow-row"><span class="flow-index">02</span><div class="flow-copy"><strong>Trusted data</strong><span>Context, quality + access controls</span></div><span class="status">Connected</span></div>
+            <div class="flow-row"><span class="flow-index">03</span><div class="flow-copy"><strong>AI reasoning</strong><span>Models, agents + business logic</span></div><span class="status">Evaluated</span></div>
+            <div class="flow-row"><span class="flow-index">04</span><div class="flow-copy"><strong>Policy gate</strong><span>Rules, approvals + traceability</span></div><span class="status">Governed</span></div>
+            <div class="flow-row"><span class="flow-index">05</span><div class="flow-copy"><strong>Production action</strong><span>Workflow execution + learning loop</span></div><span class="status">Observed</span></div>
+          </div>
+          <div class="system-foot">
+            <div class="signal"><b>Evidence</b><span>before scale</span></div>
+            <div class="signal"><b>Human control</b><span>where it matters</span></div>
+            <div class="signal"><b>Cloud neutral</b><span>by design</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="proof-bar" aria-label="Priority markets and delivery model">
+      <div class="proof-inner shell">
+        <div class="proof-label">Built for consequential work</div>
+        <div class="proof-item">Travel &amp; hospitality</div>
+        <div class="proof-item">Retail &amp; eCommerce</div>
+        <div class="proof-item">Enterprise data &amp; AI</div>
+      </div>
+    </div>
+
+    <section class="principles">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="kicker">The operating idea</p>
+          <div><h2>Small senior teams. Fast evidence. Durable systems.</h2></div>
+        </div>
+        <div class="principle-grid reveal">
+          <article class="principle"><b>Start with the decision</b><p>We anchor every engagement in a business outcome—not a fashionable model or tool.</p></article>
+          <article class="principle"><b>Prove before scaling</b><p>Working software and real-user evidence reduce risk before a larger investment.</p></article>
+          <article class="principle"><b>Engineer for reality</b><p>Security, governance, evaluation, cost and adoption are part of the system from day one.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="kicker">What we do</p>
+          <div><h2>One partner from opportunity to operation.</h2><p class="section-intro">Engage us for a focused sprint, a production build, or the data foundation beneath it. Each offer is designed to create a clear next decision.</p></div>
+        </div>
+        <div class="service-list">
+          <article class="service reveal"><div class="service-number">01 / 04</div><div><h3>AI opportunity &amp; roadmap sprint</h3><p>Prioritise the use cases that matter, quantify their value, assess readiness and leave with an executable plan.</p></div><div class="service-detail"><span class="tag">2–3 weeks</span><span class="tag">Use-case portfolio</span><span class="tag">ROI hypothesis</span><span class="tag">Architecture &amp; roadmap</span></div></article>
+          <article class="service reveal"><div class="service-number">02 / 04</div><div><h3>Agentic AI &amp; GenAI products</h3><p>Design and build domain-aware copilots, agents and intelligent workflows—tested with real users and governed for production.</p></div><div class="service-detail"><span class="tag">4–8 week MVP</span><span class="tag">RAG &amp; knowledge systems</span><span class="tag">Agent orchestration</span><span class="tag">Evaluation</span></div></article>
+          <article class="service reveal"><div class="service-number">03 / 04</div><div><h3>Data &amp; AI platform engineering</h3><p>Create the trusted, governed data products and AI platform capabilities that turn experiments into repeatable delivery.</p></div><div class="service-detail"><span class="tag">Lakehouse / warehouse</span><span class="tag">Pipelines &amp; APIs</span><span class="tag">Vector systems</span><span class="tag">Governance</span></div></article>
+          <article class="service reveal"><div class="service-number">04 / 04</div><div><h3>AI-assisted product engineering</h3><p>Modernise products and engineering workflows with AI—without compromising architecture, maintainability or control.</p></div><div class="service-detail"><span class="tag">Legacy modernisation</span><span class="tag">AI-enabled SDLC</span><span class="tag">Product acceleration</span><span class="tag">Quality engineering</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="industries">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="kicker">Where we begin</p>
+          <div><h2>Domain context makes AI useful faster.</h2><p class="section-intro">We begin where our operating experience is strongest, then apply the same patterns to adjacent industries and enterprise functions.</p></div>
+        </div>
+        <div class="split-panel">
+          <article class="industry reveal"><p class="kicker">01 · Travel &amp; Hospitality</p><h3>Turn service complexity into a better guest journey.</h3><p>Connect operational, customer and commercial context to help teams make faster, more consistent decisions.</p><ul class="industry-list"><li>Guest and service operations copilots</li><li>Disruption response and rebooking workflows</li><li>Revenue, rate and demand intelligence</li><li>Enterprise knowledge and policy assistance</li></ul></article>
+          <article class="industry reveal"><p class="kicker">02 · Retail &amp; eCommerce</p><h3>Make every product, interaction and decision smarter.</h3><p>Apply trustworthy data and AI across discovery, merchandising, service and operations.</p><ul class="industry-list"><li>Conversational commerce and service</li><li>Catalogue enrichment and product intelligence</li><li>Personalisation and next-best action</li><li>Demand, pricing and markdown decisions</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sprint" id="proof-sprint">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="kicker">The 4-week Proof Sprint</p>
+          <div><h2>See working evidence before a larger commitment.</h2><p class="section-intro">One high-value problem. Real data. Real users. A fixed, decision-oriented engagement designed to answer: should we scale this?</p></div>
+        </div>
+        <div class="timeline reveal">
+          <article class="week"><small>Week 01</small><h3>Frame</h3><p>Define the outcome, users, data, risks and success measures.</p></article>
+          <article class="week"><small>Week 02</small><h3>Build</h3><p>Create the first end-to-end working system on a narrow scope.</p></article>
+          <article class="week"><small>Week 03</small><h3>Test</h3><p>Put it in front of users; evaluate quality, control and usability.</p></article>
+          <article class="week"><small>Week 04</small><h3>Decide</h3><p>Measure the evidence and map the production path—or stop cleanly.</p></article>
+        </div>
+        <div class="sprint-output reveal"><h3>You leave with more than a demo.</h3><div class="output-list"><span>Working prototype</span><span>Evaluation scorecard</span><span>Cost and value model</span><span>Production architecture</span><span>Risk and readiness view</span><span>Scale roadmap</span></div></div>
+      </div>
+    </section>
+
+    <section class="architecture">
+      <div class="shell architecture-grid">
+        <div class="architecture-copy reveal"><p class="kicker">Production-grade by design</p><h2>AI is only as strong as the system around it.</h2><p>We combine model intelligence with deterministic control. The result is software your teams can understand, operate and improve.</p></div>
+        <div class="stack reveal" aria-label="Layers of a production AI system">
+          <div class="stack-row"><b>Experience</b><span>Useful, explainable interactions designed around real work</span></div>
+          <div class="stack-row"><b>Intelligence</b><span>Models, agents, retrieval, tools and business logic</span></div>
+          <div class="stack-row"><b>Control</b><span>Policy gates, human approvals, permissions and audit trails</span></div>
+          <div class="stack-row"><b>Evidence</b><span>Evaluation, tracing, latency, cost and business measures</span></div>
+          <div class="stack-row"><b>Foundation</b><span>Trusted data products, lineage, quality and secure access</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us">
+      <div class="shell">
+        <div class="section-head reveal"><p class="kicker">Why Enviseer</p><div><h2>Senior attention with engineering speed.</h2><p class="section-intro">We sit between large consultancies and delivery-only vendors: strategic enough to frame the right problem, technical enough to build the answer.</p></div></div>
+        <div class="why-grid">
+          <article class="why-item reveal"><strong>01</strong><h3>Operator-led</h3><p>Business context and technical decisions stay connected from the first conversation.</p></article>
+          <article class="why-item reveal"><strong>02</strong><h3>Senior team</h3><p>The people shaping the work are the people accountable for delivery.</p></article>
+          <article class="why-item reveal"><strong>03</strong><h3>Evidence first</h3><p>We use working software and measurable tests to make the next investment decision.</p></article>
+          <article class="why-item reveal"><strong>04</strong><h3>Cloud neutral</h3><p>Architecture follows your context across AWS, Azure and Google Cloud—not vendor incentives.</p></article>
+          <article class="why-item reveal"><strong>05</strong><h3>Your assets</h3><p>You own the code, architecture and documentation. No manufactured dependency.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="approach">
+      <div class="shell">
+        <div class="section-head reveal"><p class="kicker">How we work</p><div><h2>A clear path from ambition to advantage.</h2></div></div>
+        <div class="approach-line reveal">
+          <article class="approach-step" data-step="01"><h3>Discover</h3><p>Find the consequential problem and define value.</p></article>
+          <article class="approach-step" data-step="02"><h3>Ready</h3><p>Prepare the data, controls and architecture.</p></article>
+          <article class="approach-step" data-step="03"><h3>Prove</h3><p>Build, test and measure with real users.</p></article>
+          <article class="approach-step" data-step="04"><h3>Scale</h3><p>Engineer the production system and adoption.</p></article>
+          <article class="approach-step" data-step="05"><h3>Run</h3><p>Observe, govern and improve the value loop.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="shell contact-card">
+        <div class="contact-copy"><p class="kicker">Start with the problem</p><h2>Bring us one consequential workflow.</h2><p>In a focused working session, we will pressure-test the opportunity, data reality and fastest credible path to evidence.</p><div class="contact-meta">Prefer email? <a href="mailto:hello@enviseer.ai">hello@enviseer.ai</a><br>Based in India. Working globally.</div></div>
+        <form class="contact-form" id="contact-form">
+          <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required placeholder="Your name"></div>
+          <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@company.com"></div>
+          <div class="field"><label for="interest">Where should we begin?</label><select id="interest" name="interest"><option>AI opportunity and roadmap</option><option>Agentic AI / GenAI product</option><option>Data and AI platform</option><option>Product engineering and modernisation</option><option>Not sure yet</option></select></div>
+          <div class="field"><label for="message">The problem in one or two sentences</label><textarea id="message" name="message" required placeholder="What decision or workflow needs to work better?"></textarea></div>
+          <button class="button primary" type="submit">Compose the introduction <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <p class="form-note" id="form-note" aria-live="polite">This prototype opens your email app; no form data is stored.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner"><span>© <span id="year"></span> Enviseer. AI + Data, engineered for value.</span><div class="footer-links"><a href="#services">Services</a><a href="#proof-sprint">Proof Sprint</a><a href="mailto:hello@enviseer.ai">Email</a></div></div>
+  </footer>
+
+  <script>
+    const header = document.querySelector('.site-header');
+    const menuButton = document.querySelector('.menu-button');
+    const navLinks = document.querySelector('#nav-links');
+    const rows = [...document.querySelectorAll('.flow-row')];
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 8), { passive: true });
+    menuButton.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    });
+    navLinks.addEventListener('click', event => {
+      if (event.target.closest('a')) {
+        navLinks.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    if (!reduceMotion) {
+      let activeRow = 0;
+      window.setInterval(() => {
+        rows[activeRow].classList.remove('active');
+        activeRow = (activeRow + 1) % rows.length;
+        rows[activeRow].classList.add('active');
+      }, 1800);
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.querySelector('#contact-form').addEventListener('submit', event => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const subject = encodeURIComponent(`Website introduction — ${data.get('interest')}`);
+      const body = encodeURIComponent(`Name: ${data.get('name')}\nEmail: ${data.get('email')}\nInterest: ${data.get('interest')}\n\nProblem:\n${data.get('message')}`);
+      document.querySelector('#form-note').textContent = 'Opening your email app…';
+      window.location.href = `mailto:hello@enviseer.ai?subject=${subject}&body=${body}`;
+    });
+    document.querySelector('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
