@@ -7,7 +7,7 @@ export const brand = {
   fullName: "Enviseer",
   slug: "enviseer",
   tagline: "AI + Data, engineered for value.",
-  email: "hello@enviseer.ai",
+  email: "biz@enviseer.com",
   location: "Based in India. Working globally.",
 } as const;
 
