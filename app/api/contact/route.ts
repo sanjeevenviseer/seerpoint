@@ -127,9 +127,8 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    const detail = smtpFailureDetail(error, pass);
-    console.error("contact send failed", detail);
-    return failure(503, detail);
+    console.error("contact send failed", smtpFailureDetail(error, pass));
+    return failure(503);
   }
 
   return NextResponse.json({ ok: true });
