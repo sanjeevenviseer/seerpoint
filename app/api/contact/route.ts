@@ -12,7 +12,19 @@ const MAX_SENDS = 5;
 
 const hits = new Map<string, number[]>();
 
-const failure = (status: number) => NextResponse.json({ ok: false }, { status });
+const failure = (status: number, reason?: string) =>
+  NextResponse.json(reason ? { ok: false, reason } : { ok: false }, { status });
+
+function envValue(name: string): string {
+  return process.env[name]?.trim() ?? "";
+}
+
+function smtpFailureDetail(error: unknown, pass: string): string {
+  if (!error || typeof error !== "object") return "send_failed";
+  const err = error as { code?: string; responseCode?: number; response?: string; message?: string };
+  const raw = [err.code, err.responseCode, err.response || err.message].filter((part) => part != null && part !== "").join(" ");
+  return raw.split(pass).join("[redacted]").slice(0, 240) || "send_failed";
+}
 
 function clientIp(request: NextRequest): string {
   const forwarded = request.headers.get("x-forwarded-for");
@@ -79,12 +91,12 @@ export async function POST(request: NextRequest) {
   if (!name || !email || !interest || !message) return failure(400);
   if (!contactInterests.includes(interest as (typeof contactInterests)[number])) return failure(400);
 
-  const pass = process.env.SMTP_PASS?.trim();
-  const user = process.env.SMTP_USER?.trim() || "alert@enviseer.com";
-  if (!pass || !workEmail(user) || !user.endsWith("@enviseer.com")) return failure(503);
+  const pass = envValue("SMTP_PASS");
+  const user = envValue("SMTP_USER") || "alert@enviseer.com";
+  if (!pass || !workEmail(user) || !user.endsWith("@enviseer.com")) return failure(503, "not_configured");
 
-  const port = Number(process.env.SMTP_PORT || 587);
-  const host = process.env.SMTP_HOST?.trim() || "smtp.office365.com";
+  const port = Number(envValue("SMTP_PORT") || 587);
+  const host = envValue("SMTP_HOST") || "smtp.office365.com";
 
   try {
     const transport = nodemailer.createTransport({
@@ -114,8 +126,10 @@ export async function POST(request: NextRequest) {
         "X-Enviseer-Form": "contact",
       },
     });
-  } catch {
-    return failure(503);
+  } catch (error) {
+    const detail = smtpFailureDetail(error, pass);
+    console.error("contact send failed", detail);
+    return failure(503, detail);
   }
 
   return NextResponse.json({ ok: true });
