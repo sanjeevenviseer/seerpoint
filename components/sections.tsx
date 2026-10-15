@@ -4,6 +4,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { ArrowIcon } from "@/components/ArrowIcon";
 import { Reveal } from "@/components/Reveal";
 import { brand } from "@/lib/brand";
+import { contactInterests } from "@/lib/contact";
 
 const flowSteps = [
   { index: "01", title: "Business outcome", detail: "Value hypothesis + decision metric", status: "Defined" },
@@ -440,17 +441,38 @@ export function Approach() {
 }
 
 export function Contact() {
-  const [formNote, setFormNote] = useState("This prototype opens your email app; no form data is stored.");
+  const [formNote, setFormNote] = useState(`Your introduction is sent directly to ${brand.email}.`);
+  const [sending, setSending] = useState(false);
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const subject = encodeURIComponent(`Website introduction — ${data.get("interest")}`);
-    const body = encodeURIComponent(
-      `Name: ${data.get("name")}\nEmail: ${data.get("email")}\nInterest: ${data.get("interest")}\n\nProblem:\n${data.get("message")}`,
-    );
-    setFormNote("Opening your email app…");
-    window.location.href = `mailto:${brand.email}?subject=${subject}&body=${body}`;
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    setSending(true);
+    setFormNote("Sending your introduction…");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          interest: data.get("interest"),
+          message: data.get("message"),
+        }),
+      });
+      if (!response.ok) {
+        setFormNote(`We could not send that. Please email ${brand.email} directly.`);
+        return;
+      }
+      form.reset();
+      setFormNote("Sent. We will reply to your work email.");
+    } catch {
+      setFormNote(`We could not send that. Please email ${brand.email} directly.`);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -472,20 +494,18 @@ export function Contact() {
         <form className="contact-form" onSubmit={onSubmit}>
           <div className="field">
             <label htmlFor="name">Name</label>
-            <input id="name" name="name" autoComplete="name" required placeholder="Your name" />
+            <input id="name" name="name" autoComplete="name" required maxLength={120} placeholder="Your name" />
           </div>
           <div className="field">
             <label htmlFor="email">Work email</label>
-            <input id="email" name="email" type="email" autoComplete="email" required placeholder="you@company.com" />
+            <input id="email" name="email" type="email" autoComplete="email" required maxLength={254} placeholder="you@company.com" />
           </div>
           <div className="field">
             <label htmlFor="interest">Where should we begin?</label>
-            <select id="interest" name="interest" defaultValue="AI opportunity and roadmap">
-              <option>AI opportunity and roadmap</option>
-              <option>Agentic AI / GenAI product</option>
-              <option>Data and AI platform</option>
-              <option>Product engineering and modernisation</option>
-              <option>Not sure yet</option>
+            <select id="interest" name="interest" defaultValue={contactInterests[0]}>
+              {contactInterests.map((interest) => (
+                <option key={interest}>{interest}</option>
+              ))}
             </select>
           </div>
           <div className="field">
@@ -494,11 +514,12 @@ export function Contact() {
               id="message"
               name="message"
               required
+              maxLength={2000}
               placeholder="What decision or workflow needs to work better?"
             />
           </div>
-          <button className="button primary" type="submit">
-            Compose the introduction <ArrowIcon />
+          <button className="button primary" type="submit" disabled={sending}>
+            {sending ? "Sending…" : "Send the introduction"} <ArrowIcon />
           </button>
           <p className="form-note" aria-live="polite">
             {formNote}
