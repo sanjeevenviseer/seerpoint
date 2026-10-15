@@ -18,13 +18,13 @@ const services = [
     num: "01 / 04",
     title: "AI opportunity & roadmap sprint",
     body: "Prioritise the use cases that matter, quantify their value, assess readiness and leave with an executable plan.",
-    tags: ["2–3 weeks", "Use-case portfolio", "ROI hypothesis", "Architecture & roadmap"],
+    tags: ["2 to 3 weeks", "Use case portfolio", "ROI hypothesis", "Architecture & roadmap"],
   },
   {
     num: "02 / 04",
     title: "Agentic AI & GenAI products",
-    body: "Design and build domain-aware copilots, agents and intelligent workflows—tested with real users and governed for production.",
-    tags: ["4–8 week MVP", "RAG & knowledge systems", "Agent orchestration", "Evaluation"],
+    body: "Design and build domain aware copilots, agents and intelligent workflows, tested with real users and governed for production.",
+    tags: ["4 to 8 week MVP", "RAG & knowledge systems", "Agent orchestration", "Evaluation"],
   },
   {
     num: "03 / 04",
@@ -34,9 +34,9 @@ const services = [
   },
   {
     num: "04 / 04",
-    title: "AI-assisted product engineering",
-    body: "Modernise products and engineering workflows with AI—without compromising architecture, maintainability or control.",
-    tags: ["Legacy modernisation", "AI-enabled SDLC", "Product acceleration", "Quality engineering"],
+    title: "AI assisted product engineering",
+    body: "Modernise products and engineering workflows with AI, without compromising architecture, maintainability or control.",
+    tags: ["Legacy modernisation", "AI enabled SDLC", "Product acceleration", "Quality engineering"],
   },
 ];
 
@@ -70,11 +70,11 @@ export function Hero() {
               Book a working session <ArrowIcon />
             </a>
             <a className="button secondary" href="#proof-sprint">
-              See the 4-week Proof Sprint
+              See the 4 week Proof Sprint
             </a>
           </div>
           <p className="hero-note">
-            Founder-led discovery. Senior delivery. Your data, your IP, your choice of cloud.
+            Founder led discovery. Senior delivery. Your data, your IP, your choice of cloud.
           </p>
         </Reveal>
 
@@ -146,11 +146,11 @@ export function Principles() {
           <div className="principle-grid">
             <article className="principle">
               <b>Start with the decision</b>
-              <p>We anchor every engagement in a business outcome—not a fashionable model or tool.</p>
+              <p>We anchor every engagement in a business outcome, not a fashionable model or tool.</p>
             </article>
             <article className="principle">
               <b>Prove before scaling</b>
-              <p>Working software and real-user evidence reduce risk before a larger investment.</p>
+              <p>Working software and real user evidence reduce risk before a larger investment.</p>
             </article>
             <article className="principle">
               <b>Engineer for reality</b>
@@ -244,7 +244,7 @@ export function Industries() {
               <ul className="industry-list">
                 <li>Conversational commerce and service</li>
                 <li>Catalogue enrichment and product intelligence</li>
-                <li>Personalisation and next-best action</li>
+                <li>Personalisation and next best action</li>
                 <li>Demand, pricing and markdown decisions</li>
               </ul>
             </article>
@@ -277,11 +277,11 @@ export function ProofSprint() {
       <div className="shell">
         <Reveal>
           <div className="section-head">
-            <p className="kicker">The 4-week Proof Sprint</p>
+            <p className="kicker">The 4 week Proof Sprint</p>
             <div>
               <h2>See working evidence before a larger commitment.</h2>
               <p className="section-intro">
-                One high-value problem. Real data. Real users. A fixed, decision-oriented engagement
+                One high value problem. Real data. Real users. A fixed, decision oriented engagement
                 designed to answer: should we scale this?
               </p>
             </div>
@@ -297,7 +297,7 @@ export function ProofSprint() {
             <article className="week">
               <small>Week 02</small>
               <h3>Build</h3>
-              <p>Create the first end-to-end working system on a narrow scope.</p>
+              <p>Create the first end to end working system on a narrow scope.</p>
             </article>
             <article className="week">
               <small>Week 03</small>
@@ -307,7 +307,7 @@ export function ProofSprint() {
             <article className="week">
               <small>Week 04</small>
               <h3>Decide</h3>
-              <p>Measure the evidence and map the production path—or stop cleanly.</p>
+              <p>Measure the evidence and map the production path, or stop cleanly.</p>
             </article>
           </div>
         </Reveal>
@@ -342,7 +342,7 @@ export function Architecture() {
     <section className="architecture">
       <div className="shell architecture-grid">
         <Reveal className="architecture-copy">
-          <p className="kicker">Production-grade by design</p>
+          <p className="kicker">Production grade by design</p>
           <h2>AI is only as strong as the system around it.</h2>
           <p>
             We combine model intelligence with deterministic control. The result is software your teams
@@ -366,10 +366,10 @@ export function Architecture() {
 
 export function WhyUs() {
   const items = [
-    { n: "01", title: "Operator-led", body: "Business context and technical decisions stay connected from the first conversation." },
+    { n: "01", title: "Operator led", body: "Business context and technical decisions stay connected from the first conversation." },
     { n: "02", title: "Senior team", body: "The people shaping the work are the people accountable for delivery." },
     { n: "03", title: "Evidence first", body: "We use working software and measurable tests to make the next investment decision." },
-    { n: "04", title: "Cloud neutral", body: "Architecture follows your context across AWS, Azure and Google Cloud—not vendor incentives." },
+    { n: "04", title: "Cloud neutral", body: "Architecture follows your context across AWS, Azure and Google Cloud, not vendor incentives." },
     { n: "05", title: "Your assets", body: "You own the code, architecture and documentation. No manufactured dependency." },
   ];
 
@@ -382,7 +382,7 @@ export function WhyUs() {
             <div>
               <h2>Senior attention with engineering speed.</h2>
               <p className="section-intro">
-                We sit between large consultancies and delivery-only vendors: strategic enough to frame
+                We sit between large consultancies and delivery only vendors: strategic enough to frame
                 the right problem, technical enough to build the answer.
               </p>
             </div>
@@ -460,7 +460,7 @@ export function Contact() {
           <p className="kicker">Start with the problem</p>
           <h2>Bring us one consequential workflow.</h2>
           <p>
-            In a focused working session, we will pressure-test the opportunity, data reality and
+            In a focused working session, we will pressure test the opportunity, data reality and
             fastest credible path to evidence.
           </p>
           <div className="contact-meta">

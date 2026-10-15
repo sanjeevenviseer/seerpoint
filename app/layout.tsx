@@ -11,9 +11,9 @@ const geist = Geist({
   display: "swap",
 });
 
-const title = `${brand.fullName} — From fragmented data to AI that works`;
+const title = `${brand.fullName}: From fragmented data to AI that works`;
 const description =
-  "Enviseer is a senior AI and data engineering partner. We turn high-value opportunities into governed, production-ready systems.";
+  "Enviseer is a senior AI and data engineering partner. We turn high value opportunities into governed, production ready systems.";
 
 export const viewport: Viewport = {
   themeColor: "#fbfbfe",
